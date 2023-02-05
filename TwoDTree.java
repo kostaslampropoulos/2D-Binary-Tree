@@ -98,7 +98,7 @@ public class TwoDTree {
         return found;
     } // does the tree contain p?
 
-    //TODO:
+    //TODO:  Fix thoe methods
     /* 
     public Point nearestNeighbor(Point p){
         if (isEmpty()){
