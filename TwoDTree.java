@@ -100,7 +100,6 @@ public class TwoDTree {
         return found;
     } // does the tree contain p?
 
-    //TODO:  Fix thoe methods
     
     public Point nearestNeighbor(Point p){
         if (isEmpty()){
@@ -145,5 +144,9 @@ public class TwoDTree {
         list.add(head.get_point());
         recursive_rangeSearch(rect, head.get_l(), list);
         recursive_rangeSearch(rect, head.get_r(), list);
+    }
+
+    public static void main (String[] args){
+        //TODO
     }
 }
