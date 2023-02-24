@@ -12,6 +12,13 @@ public class Rectangle {
         this.ymax = ymax;
     }
 
+    public Rectangle(Rectangle rect){
+        this.xmin = rect.get_xmin();
+        this.xmax = rect.get_xmax();
+        this.ymin = rect.get_ymin();
+        this.ymax = rect.get_ymax();
+    }
+
     public int get_xmin(){
         return xmin;
     } // minimum x-coordinate of rectangle
@@ -27,6 +34,23 @@ public class Rectangle {
     public int get_ymax(){
         return ymax;
     } // maximum y-coordinate of rectangle
+
+
+    public void set_xmin(int xmin){
+        this.xmin = xmin;
+    }
+
+    public void set_xmax(int xmax){
+        this.xmax = xmax;
+    }
+
+   public void set_ymin(int ymin){
+        this.ymin = ymin;
+    }
+
+    public void set_ymax(int ymax){
+        this.ymax = ymax;
+    }
     
     public boolean contains(Point p){
         return (p.get_x() <= xmax && p.get_x() >= xmin) && (p.get_y() <= ymax && p.get_y() >= ymin);
