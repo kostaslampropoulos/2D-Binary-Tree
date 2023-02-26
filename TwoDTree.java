@@ -213,10 +213,10 @@ public class TwoDTree {
     
     public static void main (String[] args){
         BufferedReader reader = null;
-        String l, path = args[0];
+        String l, file_path = args[0];
         
         try {
-            reader = new BufferedReader(new FileReader(new File(path)));
+            reader = new BufferedReader(new FileReader(new File(file_path)));
             l = reader.readLine();
             int num_points = Integer.parseInt(l.trim());
 
