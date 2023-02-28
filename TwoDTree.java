@@ -2,8 +2,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TwoDTree { 
     
@@ -209,6 +211,25 @@ public class TwoDTree {
         
         return nearest;
     }
+
+    public List<Point> rangeSearch(Rectangle rect){
+        List<Point> return_list = new ArrayList<Point>();
+        recursive_rangeSearch(rect, head, return_list);
+        return return_list;
+    } // Returns a list with the Points that are contained in the rectangle
+    
+    public void recursive_rangeSearch(Rectangle rect, Treenode head, List<Point> list){
+        if(head == null){
+            return;
+        }
+        Rectangle head_rect = new Rectangle(head.get_l().get_point().get_x(), head.get_r().get_point().get_x(), head.get_l().get_point().get_y(),  head.get_r().get_point().get_y());
+        if(!head_rect.intersects(rect)){
+            return;
+        }
+        list.add(head.get_point());
+        recursive_rangeSearch(rect, head.get_l(), list);
+        recursive_rangeSearch(rect, head.get_r(), list);
+    }
     
     
     public static void main (String[] args){
@@ -232,9 +253,84 @@ public class TwoDTree {
                 
                 tree.insert(new Point(x,y));   
             }
-            
-            
-            System.out.println(tree.nearestNeighbor(new Point(0,35)));
+
+            // l = reader.readLine();
+            // if (!(l.equals(""))){
+            //     System.out.println("Error: The number of points specified is incorrect!");
+            //     System.exit(0);
+            // }
+
+            System.out.println("\nTree initilized!\n");
+            int choice = 100;
+            Scanner sc = new Scanner(System.in); 
+
+            do{
+                System.out.println("1. Compute the size of the tree");
+                System.out.println("2. Insert a new point");
+                System.out.println("3. Search if a given point exists in the tree");
+                System.out.println("4. Provide a query rectangle");
+                System.out.println("5. Provide a query point");
+                System.out.print("\nChoice as a number: ");
+                choice = sc.nextInt();
+            } while (choice <= 0 || choice >=6);
+
+            if (choice == 1){
+
+                System.out.println("\nThe size of the tree is: " + tree.get_size() + "\n");
+
+            } else if (choice == 2){
+
+                System.out.print("\nGive the x coordinate: ");
+                int x = sc.nextInt();
+                System.out.print("Give the y coordinate: ");
+                int y = sc.nextInt();
+
+                Point point_to_insert = new Point(x, y);
+                tree.insert(point_to_insert);
+
+                System.out.println("\nPoint inserted in the tree!\n");
+
+            } else if (choice == 3){
+
+                System.out.print("\nGive the x coordinate: ");
+                int x = sc.nextInt();
+                System.out.print("Give the y coordinate: ");
+                int y = sc.nextInt();
+
+                Point point_to_insert = new Point(x, y);
+                if(tree.search(point_to_insert)){
+                    System.out.println("\nFound the point you were looking for!\n");
+                }else{
+                    System.out.println("\nThis point does not exist in the tree!\n");
+                }
+
+            } else if (choice == 4){
+
+                System.out.print("\nGive the x coordinate of the upper right corner of the rectangle: ");
+                int max_x = sc.nextInt();
+                System.out.print("Give the y coordinate of the upper right corner of the rectangle: ");
+                int max_y = sc.nextInt();
+
+                System.out.print("\nGive the x coordinate of the lower left corner of the rectangle: ");
+                int min_x = sc.nextInt();
+                System.out.print("Give the y coordinate of the lower left corner of the rectangle: ");
+                int min_y = sc.nextInt();
+
+                Rectangle rectangle = new Rectangle(min_x, max_x, min_y, max_y);
+
+                tree.rangeSearch(rectangle);
+
+            } else {
+                
+                System.out.print("\nGive the x coordinate: ");
+                int x = sc.nextInt();
+                System.out.print("Give the y coordinate: ");
+                int y = sc.nextInt();
+
+                Point point_given = new Point(x, y);
+                System.out.println("The closest point to the given is: " + tree.nearestNeighbor(point_given));
+
+            }
             
         } catch (IOException e) {
             e.printStackTrace();
