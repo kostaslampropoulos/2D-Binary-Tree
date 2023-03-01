@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -329,7 +328,7 @@ public class TwoDTree {
 
                 Point point_given = new Point(x, y);
                 System.out.println("The closest point to the given is: " + tree.nearestNeighbor(point_given));
-                
+
             }
             
         } catch (IOException e) {
