@@ -329,7 +329,7 @@ public class TwoDTree {
 
                 Point point_given = new Point(x, y);
                 System.out.println("The closest point to the given is: " + tree.nearestNeighbor(point_given));
-
+                
             }
             
         } catch (IOException e) {
