@@ -254,74 +254,74 @@ public class TwoDTree {
 
             System.out.println("\nTree initilized!\n");
             int choice = 100;
-            Scanner sc = new Scanner(System.in); 
+            try (Scanner sc = new Scanner(System.in)) {
+                do{
+                    System.out.println("1. Compute the size of the tree");
+                    System.out.println("2. Insert a new point");
+                    System.out.println("3. Search if a given point exists in the tree");
+                    System.out.println("4. Provide a query rectangle");
+                    System.out.println("5. Provide a query point");
+                    System.out.print("\nChoice as a number: ");
+                    choice = sc.nextInt();
+                } while (choice <= 0 || choice >=6);
 
-            do{
-                System.out.println("1. Compute the size of the tree");
-                System.out.println("2. Insert a new point");
-                System.out.println("3. Search if a given point exists in the tree");
-                System.out.println("4. Provide a query rectangle");
-                System.out.println("5. Provide a query point");
-                System.out.print("\nChoice as a number: ");
-                choice = sc.nextInt();
-            } while (choice <= 0 || choice >=6);
+                if (choice == 1){
 
-            if (choice == 1){
+                    System.out.println("\nThe size of the tree is: " + tree.get_size() + "\n");
 
-                System.out.println("\nThe size of the tree is: " + tree.get_size() + "\n");
+                } else if (choice == 2){
 
-            } else if (choice == 2){
+                    System.out.print("\nGive the x coordinate: ");
+                    int x = sc.nextInt();
+                    System.out.print("Give the y coordinate: ");
+                    int y = sc.nextInt();
 
-                System.out.print("\nGive the x coordinate: ");
-                int x = sc.nextInt();
-                System.out.print("Give the y coordinate: ");
-                int y = sc.nextInt();
+                    Point point_to_insert = new Point(x, y);
+                    tree.insert(point_to_insert);
 
-                Point point_to_insert = new Point(x, y);
-                tree.insert(point_to_insert);
+                    System.out.println("\nPoint inserted in the tree!\n");
 
-                System.out.println("\nPoint inserted in the tree!\n");
+                } else if (choice == 3){
 
-            } else if (choice == 3){
+                    System.out.print("\nGive the x coordinate: ");
+                    int x = sc.nextInt();
+                    System.out.print("Give the y coordinate: ");
+                    int y = sc.nextInt();
 
-                System.out.print("\nGive the x coordinate: ");
-                int x = sc.nextInt();
-                System.out.print("Give the y coordinate: ");
-                int y = sc.nextInt();
+                    Point point_to_insert = new Point(x, y);
+                    if(tree.search(point_to_insert)){
+                        System.out.println("\nFound the point you were looking for!\n");
+                    }else{
+                        System.out.println("\nThis point does not exist in the tree!\n");
+                    }
 
-                Point point_to_insert = new Point(x, y);
-                if(tree.search(point_to_insert)){
-                    System.out.println("\nFound the point you were looking for!\n");
-                }else{
-                    System.out.println("\nThis point does not exist in the tree!\n");
+                } else if (choice == 4){
+
+                    System.out.print("\nGive the x coordinate of the upper right corner of the rectangle: ");
+                    int max_x = sc.nextInt();
+                    System.out.print("Give the y coordinate of the upper right corner of the rectangle: ");
+                    int max_y = sc.nextInt();
+
+                    System.out.print("\nGive the x coordinate of the lower left corner of the rectangle: ");
+                    int min_x = sc.nextInt();
+                    System.out.print("Give the y coordinate of the lower left corner of the rectangle: ");
+                    int min_y = sc.nextInt();
+
+                    Rectangle rectangle = new Rectangle(min_x, max_x, min_y, max_y);
+
+                    tree.rangeSearch(rectangle);
+
+                } else {
+                    
+                    System.out.print("\nGive the x coordinate: ");
+                    int x = sc.nextInt();
+                    System.out.print("Give the y coordinate: ");
+                    int y = sc.nextInt();
+
+                    Point point_given = new Point(x, y);
+                    System.out.println("\nThe closest point to the given is: " + tree.nearestNeighbor(point_given) + "\n");
+
                 }
-
-            } else if (choice == 4){
-
-                System.out.print("\nGive the x coordinate of the upper right corner of the rectangle: ");
-                int max_x = sc.nextInt();
-                System.out.print("Give the y coordinate of the upper right corner of the rectangle: ");
-                int max_y = sc.nextInt();
-
-                System.out.print("\nGive the x coordinate of the lower left corner of the rectangle: ");
-                int min_x = sc.nextInt();
-                System.out.print("Give the y coordinate of the lower left corner of the rectangle: ");
-                int min_y = sc.nextInt();
-
-                Rectangle rectangle = new Rectangle(min_x, max_x, min_y, max_y);
-
-                tree.rangeSearch(rectangle);
-
-            } else {
-                
-                System.out.print("\nGive the x coordinate: ");
-                int x = sc.nextInt();
-                System.out.print("Give the y coordinate: ");
-                int y = sc.nextInt();
-
-                Point point_given = new Point(x, y);
-                System.out.println("\nThe closest point to the given is: " + tree.nearestNeighbor(point_given) + "\n");
-
             }
             
         } catch (IOException e) {
