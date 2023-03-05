@@ -119,7 +119,6 @@ public class TwoDTree {
         boolean X0Y1 = false;
         
         nearest = nearesNeighborRecursive(nearest, p, head, rect, X0Y1);
-        System.out.println("Result: " + nearest);
         return nearest;
     } // point in the tree that is closest to p (null if tree is empty)
 
@@ -135,8 +134,6 @@ public class TwoDTree {
 
             if(nearest.distanceTo(p) >= rect.distanceTo(p)){
                 nearest = current_head.get_point();
-                System.out.println(nearest);
-                System.out.println(2);
                 
                 Rectangle rectl;
                 if(X0Y1){
@@ -169,8 +166,6 @@ public class TwoDTree {
             //Rectangle rect = new Rectangle(0, current_head.get_r().get_point().get_x(), 0, current_head.get_r().get_point().get_y());
             if(nearest.distanceTo(p) >= rect.distanceTo(p)){
                 nearest = current_head.get_point();
-                System.out.println(nearest);
-                System.out.println("1r");
                 
                 Rectangle rectr;
                 if(X0Y1){
@@ -190,8 +185,6 @@ public class TwoDTree {
             //Rectangle rect = new Rectangle(0, current_head.get_l().get_point().get_x(), 0, current_head.get_l().get_point().get_y());
             if(nearest.distanceTo(p) >= rect.distanceTo(p)){
                 nearest = current_head.get_point();
-                System.out.println(nearest);
-                System.out.println("1l");
                 
                 Rectangle rectl;
                 if(X0Y1){
@@ -327,7 +320,7 @@ public class TwoDTree {
                 int y = sc.nextInt();
 
                 Point point_given = new Point(x, y);
-                System.out.println("The closest point to the given is: " + tree.nearestNeighbor(point_given));
+                System.out.println("\nThe closest point to the given is: " + tree.nearestNeighbor(point_given) + "\n");
 
             }
             

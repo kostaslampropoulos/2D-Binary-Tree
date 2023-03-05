@@ -67,15 +67,15 @@ public class Rectangle {
     } // do the two rectangles intersect?
     
     public double distanceTo(Point p) {
-        int xDiff = Math.max(Math.min(p.get_x(), xmax) - Math.max(p.get_x(), xmin), 0);
-        int yDiff = Math.max(Math.min(p.get_y(), ymax) - Math.max(p.get_y(), ymin), 0);
+        int xDiff = Math.max(Math.max(p.get_x(), xmin) - Math.min(p.get_x(), xmax), 0);
+        int yDiff = Math.max(Math.max(p.get_y(), ymin) - Math.min(p.get_y(), ymax), 0);
         
         return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
     }// Euclidean distance from p to closest point in rectangle
     
     public int squareDistanceTo(Point p) {
-        int xDiff = Math.max(Math.min(p.get_x(), xmax) - Math.max(p.get_x(), xmin), 0);
-        int yDiff = Math.max(Math.min(p.get_y(), ymax) - Math.max(p.get_y(), ymin), 0);
+        int xDiff = Math.max(Math.max(p.get_x(), xmin) - Math.min(p.get_x(), xmax), 0);
+        int yDiff = Math.max(Math.max(p.get_y(), ymin) - Math.min(p.get_y(), ymax), 0);
         
         return xDiff * xDiff + yDiff * yDiff;
     }// square of Euclidean distance from p to closest point in rectangle
