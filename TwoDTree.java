@@ -77,6 +77,7 @@ public class TwoDTree {
     
     
     public boolean search(Point p){
+        
         boolean found = false;
         boolean rl = false;  
         Treenode runner = head;
